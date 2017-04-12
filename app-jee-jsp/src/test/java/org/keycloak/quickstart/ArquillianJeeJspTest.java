@@ -102,6 +102,8 @@ public class ArquillianJeeJspTest {
 
     @Deployment(name= APP_NAME, order = 2, testable = false)
     public static Archive<?> createTestArchive2() throws IOException {
+        File file = new File("pom.xml");
+        System.out.println("####FILE: " + file.getAbsolutePath());
         PomEquippedResolveStage pom1 = Maven.resolver().loadPomFromFile("pom.xml");
         PomEquippedResolveStage pom2 = pom1.importRuntimeDependencies();
         MavenStrategyStage resolve = pom2.resolve();

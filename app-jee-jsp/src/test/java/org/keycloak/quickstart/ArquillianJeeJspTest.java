@@ -49,6 +49,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.jboss.shrinkwrap.resolver.api.maven.MavenFormatStage;
+import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStage;
+import org.jboss.shrinkwrap.resolver.api.maven.PomEquippedResolveStage;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -99,6 +102,11 @@ public class ArquillianJeeJspTest {
 
     @Deployment(name= APP_NAME, order = 2, testable = false)
     public static Archive<?> createTestArchive2() throws IOException {
+        PomEquippedResolveStage pom1 = Maven.resolver().loadPomFromFile("pom.xml");
+        PomEquippedResolveStage pom2 = pom1.importRuntimeDependencies();
+        MavenStrategyStage resolve = pom2.resolve();
+        MavenFormatStage withTransitivity = resolve.withTransitivity();
+        withTransitivity.asFile();
         File[] files = Maven.resolver().loadPomFromFile("pom.xml")
                     .importRuntimeDependencies().resolve().withTransitivity().asFile();
 

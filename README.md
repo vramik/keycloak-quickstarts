@@ -36,7 +36,7 @@ The applications these projects produce are designed to be run on <span>WildFly<
 All you need to build these projects is Java 8.0 (Java SDK 1.8) or later and Maven 3.1.1 or later.
 
 
-<a id="<span>Keycloak</span>"></a>Start the <span>Keycloak</span> Server
+<a id="keycloak"></a>Start the <span>Keycloak</span> Server
 ------------------------------------------
 
 By default the <span>Keycloak</span> Server uses the same ports as the <span>WildFly</span> Server. To run the quickstarts you can either run the
